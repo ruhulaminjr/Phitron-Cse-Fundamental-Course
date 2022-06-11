@@ -13,7 +13,7 @@ int main(void)
         {
             scanf("%d", &arr[i]);
         }
-        int counter[10] = {0};
+        int counter[200000] = {0};
         for (int i = 0; i < n; i++)
         {
             int value = arr[i];
