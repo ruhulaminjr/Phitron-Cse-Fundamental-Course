@@ -16,13 +16,19 @@ int main(void)
     int arr[5] = {10, 20, 30, 40, 50};
     *(arr + 2) = -33;
     // printf("%d \n",arr[2]);
-    int *ptr = arr;
-    for (int i = 0; i < 5; i++)
-    {
-        printf("%d ", *ptr);
-        // arr = arr +1;
-        // arr is constant pointer
-        *ptr++;
-    }
-    printf("\n");
+    // const int * /*const*/ ptr = arr;
+    // for (int i = 0; i < 5; i++)
+    // {
+    //     printf("%d ", *ptr);
+    //     // arr = arr +1;
+    //     // arr is constant pointer
+    //     *ptr++;
+    // }
+    int z = 50;
+    // z = 5;
+    const int *const p = &z;
+    int *x = p;
+    *x = 112;
+    //    *p = 55;
+    printf("%d\n", z);
 }
