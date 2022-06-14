@@ -4,37 +4,24 @@ int main(void)
 {
     int t;
     scanf("%d", &t);
-    for (int i = 0; i < t; i++)
+    while (t--)
     {
         int n;
-        scanf("%d", &n);
+        scanf("%d\n", &n);
         int arr[n];
+        int counter[200001] = {0};
+        int ans = -1;
         for (int i = 0; i < n; i++)
         {
             scanf("%d", &arr[i]);
-        }
-        int counter[200000] = {0};
-        for (int i = 0; i < n; i++)
-        {
             int value = arr[i];
             counter[value]++;
-        }
-        int ans = 0;
-        for (int i = 0; i < 10; i++)
-        {
-            if (counter[i] >= 3)
+            if (counter[value] >= 3)
             {
-                ans = i;
+                ans = value;
             }
         }
-        if (ans)
-        {
 
-            printf("%d\n", ans);
-        }
-        else
-        {
-            printf("-1\n");
-        }
+        printf("%d\n", ans);
     }
 }
