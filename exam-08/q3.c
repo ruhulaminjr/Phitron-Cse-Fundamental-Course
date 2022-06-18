@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 void count_zero(char binary[])
 {
     int i = 0;
@@ -15,8 +14,6 @@ void count_zero(char binary[])
     }
     printf("%d\n", zero);
 }
-
-
 
 int main(void)
 {
