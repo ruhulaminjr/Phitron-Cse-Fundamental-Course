@@ -10,8 +10,8 @@ void print_result(struct Batsman a)
 }
 void change_struct(struct Batsman *a)
 {
-    a->score= 101;
-    // -> this sign short cut for (*a) dereferenchin operator 
+    a->score = 101;
+    // -> this sign short cut for (*a) dereferenchin operator
 }
 int main(void)
 {
