@@ -18,4 +18,6 @@ int main(void){
         // fprintf(outputfile,"%c",ch);
         fputc(ch,outputfile);
     }
+    fclose(inputfile);
+    fclose(outputfile);
 }

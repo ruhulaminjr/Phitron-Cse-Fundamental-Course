@@ -9,4 +9,6 @@ int main(void)
         fprintf(logfile, "File Not found at 15:51:11 \n");
         return 0;
     }
+    fclose(logfile);
+    fclose(infile);
 }

@@ -18,4 +18,6 @@ int main(void)
         sum += a;
     }
     fprintf(outputfile, "Sum -> %d\n", sum);
+    fclose(inputfile);
+    fclose(outputfile);
 }
