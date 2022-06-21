@@ -3,7 +3,7 @@
 int main(void)
 {
     FILE *inputfile = fopen("inarr.txt", "r");
-    FILE *outputfile = fopen("outsum.txt", "w");
+    FILE *outputfile = fopen("outsum.txt", "a");
     if (inputfile == NULL)
     {
         perror("Input File Not Found!\n");
@@ -12,13 +12,20 @@ int main(void)
     int n;
     fscanf(inputfile, "%d", &n);
     int arr[n];
-    int sum = 0;
-    for (int i = 0; i < n; i++)
+    int x = 1;
+    while (x <= n)
     {
-        fscanf(inputfile, "%d", &arr[i]);
-        sum += arr[i];
+        int t;
+        int sum = 0;
+        fscanf(inputfile, "%d", &t);
+        for (int i = 0; i < t; i++)
+        {
+            fscanf(inputfile, "%d", &arr[i]);
+            sum += arr[i];
+        }
+        fprintf(outputfile, "Case %d: = %d\n", x, sum);
+        x++;
     }
-    fprintf(outputfile, "Arr Sum = %d\n", sum);
 }
 
 /*
