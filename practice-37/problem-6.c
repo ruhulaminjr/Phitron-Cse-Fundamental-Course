@@ -32,3 +32,22 @@ int main(void)
 Write a C program to take an integer array of size N as input and calculate the sum of all integers. You need to do this using files. That means, you will take input from a file, and give output into a file without using command prompt / terminal.
 
 */
+/*
+Do the above problem but this time with test cases. You need to take a test case as input and run the program until the test case ends. Also you need to store all the outputs into a file in such a way that the file contains all sums of those test cases.
+
+For example:
+Input:
+3
+5
+1 2 3 4 5
+4
+2 5 1 4
+6
+5 8 1 7 50 2
+
+Output: The file contains
+Case 1: 15
+Case 2: 12
+Case 3: 73
+
+*/
