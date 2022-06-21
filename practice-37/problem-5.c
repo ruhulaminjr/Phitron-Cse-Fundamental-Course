@@ -17,10 +17,10 @@ int main(void)
             break;
         }
         printf("%c", ch);
-        if(ch != ' '){
+        if (ch != ' ')
+        {
             count++;
         }
-        
     };
     printf("\ncharacter found : %d\n", count);
     fclose(inputfile);
