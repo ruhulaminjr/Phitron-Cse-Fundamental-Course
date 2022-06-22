@@ -1,0 +1,5 @@
+Name: rakib id: 111 wicked: 5 total: 14
+Name: sakib id: 222 wicked: 7 total: 15
+Name: tamim id: 333 wicked: 2 total: 16
+Name: hasib id: 444 wicked: 3 total: 3
+Name: hamim id: 555 wicked: 6 total: 10
