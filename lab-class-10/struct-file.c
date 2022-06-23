@@ -49,6 +49,18 @@ int main(void)
             k++;
         }
     }
+    for (int i = 0; i < k - 1; i++)
+    {
+        for (int j = i + 1; j < k; j++)
+        {
+            if (unique[i].total < unique[j].total)
+            {
+                struct Bowler temp = unique[i];
+                unique[i] = unique[j];
+                unique[j] = temp;
+            }
+        }
+    }
     for (int i = 0; i < k; i++)
     {
         print_bowler(outputfile, unique[i]);
