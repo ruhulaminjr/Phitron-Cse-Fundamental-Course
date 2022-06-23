@@ -22,7 +22,14 @@ int main(void)
     }
     for (int i = 0; i < n; i++)
     {
-        fprintf(outputfile, "Name: %s Value: %d \n", arr[i].name, arr[i].val);
+        if (arr[i].val <= 0)
+        {
+            fprintf(outputfile, "Invalid Input\n");
+        }
+        else
+        {
+            fprintf(outputfile, "Name: %s Value: %d \n", arr[i].name, arr[i].val);
+        }
     }
 }
 

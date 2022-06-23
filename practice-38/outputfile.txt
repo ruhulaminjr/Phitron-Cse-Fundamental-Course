@@ -4,3 +4,6 @@ Name: rubel Value: 33
 Name: Rabiil Value: 5 
 Name: Maruf Value: 3 
 Name: kamrul Value: 8 
+Invalid Input
+Name: Jamal Value: 1 
+Invalid Input
