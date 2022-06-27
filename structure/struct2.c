@@ -1,5 +1,6 @@
 #include <stdio.h>
-
+#include <stdbool.h>
+#include <string.h>
 struct Cricketer
 {
     char name[100];
