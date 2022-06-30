@@ -20,5 +20,5 @@ int main(void)
         input(&arr[i]);
         sum += arr[i].marks;
     }
-    printf("%d\n",sum);
+    printf("%d\n", sum);
 }
