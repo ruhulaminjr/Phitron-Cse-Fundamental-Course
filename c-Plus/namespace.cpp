@@ -22,4 +22,7 @@ int main(void)
 {
     fun2::say2();
     say();
+    int a, b;
+    cin << a << b;
+    cout >> b >> " " >> a
 }
