@@ -46,7 +46,44 @@ public:
             cout << "Wrong Password Can't Add Money" << endl;
         }
     }
+    // deposite money
+    void deopsite_money(string password, int amount)
+    {
+        if (this->password == password)
+        {
+            this->balance -= amount;
+        }
+        else
+        {
+            cout << "Wrong Password Can't Add Money" << endl;
+        }
+    }
+    friend class MyCash;
 };
+class MyCash
+{
+private:
+    int balance;
+
+public:
+    MyCash()
+    {
+        this->balance = 0;
+    }
+    void add_money_from_bank(Bank *myac, string password, int amount)
+    {
+        if (myac->password == password)
+        {
+            this->balance += amount;
+            myac->balance -= amount;
+        }
+    }
+    int show_balance()
+    {
+        return this->balance;
+    }
+};
+
 Bank *createAccount()
 {
     cout << "Creating New Bank Account" << endl;
@@ -59,15 +96,58 @@ Bank *createAccount()
 }
 void add_money(Bank *myac)
 {
-    cout << "Add monery balance/password " << endl;
+    cout << "Add money balance/password " << endl;
     string pass;
     int amount;
     cin >> amount >> pass;
     myac->add_money(pass, amount);
     cout << "Your Balance is : " << myac->show_balance(pass) << endl;
 }
+void deposite_money(Bank *myac)
+{
+    cout << "Deposite Money balance/password " << endl;
+    string pass;
+    int amount;
+    cin >> amount >> pass;
+    myac->deopsite_money(pass, amount);
+    cout << "Your Balance is : " << myac->show_balance(pass) << endl;
+}
+void add_money_from_bank(Bank *myac, MyCash *mycash)
+{
+    cout << "Add Money From Bank> balance/password " << endl;
+    string pass;
+    int amount;
+    cin >> amount >> pass;
+    mycash->add_money_from_bank(myac, pass, amount);
+    cout << "Your Bank Balance is : " << myac->show_balance(pass) << endl;
+    cout << "Your MyCash Balance is : " << mycash->show_balance() << endl;
+}
 int main(void)
 {
     Bank *ruhul = createAccount();
-    add_money(ruhul);
+    MyCash *mycash = new MyCash();
+Flag:
+    cout << "Select From Menu:" << endl;
+    cout << "1.Option-1 Add Money To Bank" << endl;
+    cout << "2.Option-2 Deposite Money From Bank" << endl;
+    cout << "3.Option-3 Add Money Bank to MyCash App" << endl;
+    int option;
+    cin >> option;
+    if (option == 1)
+    {
+        add_money(ruhul);
+    }
+    else if (option == 2)
+    {
+        deposite_money(ruhul);
+    }
+    else if (option == 3)
+    {
+        add_money_from_bank(ruhul, mycash);
+    }
+    else
+    {
+        cout << "Invalid Option Select" << endl;
+    }
+    goto Flag;
 }
