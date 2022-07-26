@@ -9,7 +9,26 @@ public:
     int food_item_codes[12];
     string food_item_names[12];
     int food_item_prices[12];
+    Restaurant()
+    {
+        this->total_tax = 0;
+    }
+    void update_tax(int amount)
+    {
+        this->total_tax += amount;
+    }
 };
+int check(int idx, int n)
+{
+    if (idx >= n)
+    {
+        return 999;
+    }
+    else
+    {
+        return 0;
+    }
+}
 void print_food(Restaurant res, int n)
 {
     cout << "                       Make Bill                         " << endl;
@@ -31,10 +50,17 @@ void book_table(Restaurant res, int n)
     cin >> items;
     int quantity[items];
     int itemCode[items];
+    int total_price = 0;
     for (int i = 0; i < items; i++)
     {
         cout << "Enter Item " << i + 1 << " Code :" << endl;
         cin >> itemCode[i];
+        while (check(distance(res.food_item_codes, find(res.food_item_codes, res.food_item_codes + n, itemCode[i])), n))
+        {
+            cout << "Opps You Entered Wrong Item Code Enter Again:" << endl;
+            cout << "Enter Item " << i + 1 << " Code Again :" << endl;
+            cin >> itemCode[i];
+        }
         cout << "Enter Item " << i + 1 << " Quantity :" << endl;
         cin >> quantity[i];
     }
@@ -45,10 +71,17 @@ void book_table(Restaurant res, int n)
     for (int i = 0; i < items; i++)
     {
         int idx = distance(res.food_item_codes, find(res.food_item_codes, res.food_item_codes + n, itemCode[i]));
-        int total_price = res.food_item_prices[idx] * quantity[i];
-        cout << itemCode[i] << "             " << res.food_item_prices[idx] << "             " << quantity[i] << "              " << total_price << "            " << res.food_item_names[idx] << endl;
+        int total = res.food_item_prices[idx] * quantity[i];
+        total_price += total;
+        cout << itemCode[i] << "             " << res.food_item_prices[idx] << "             " << quantity[i] << "              " << total << "            " << res.food_item_names[idx] << endl;
     }
-    cout << "-----------------------------------------------------------------" << endl;
+    cout << "-----------------------------------------------------------------------------" << endl;
+    double tax = (double(total_price) * 5) / 100;
+    cout << "Tax:                                                         " << tax << endl;
+    cout << "-----------------------------------------------------------------------------" << endl;
+    double net_total = tax + double(total_price);
+    cout << "Net-Total                                                    " << fixed << setprecision(2) << net_total << endl;
+    res.update_tax(int(tax));
 }
 
 int main(void)
