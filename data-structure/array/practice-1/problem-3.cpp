@@ -20,7 +20,7 @@ int main(void)
     }
     for (int i = 0, j = size - 1; i < j; i++, j--)
     {
-        swap(arr[i],arr[j]);
+        swap(arr[i], arr[j]);
     }
     print_arr(arr, size);
 }
@@ -36,6 +36,5 @@ Sample output
 6
 2  8  3  9  0  1
 1  0  9  3  8  2
-
 
 */
