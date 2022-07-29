@@ -43,3 +43,4 @@ int main(void)
     cout << "Array After Deletion: ";
     print_arr(arr, n);
 }
+// 2 3 4 5 6
