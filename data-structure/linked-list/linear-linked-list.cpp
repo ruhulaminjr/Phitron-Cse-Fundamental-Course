@@ -26,6 +26,15 @@ void insertAtTail(Node *&head, int val)
     }
     temp->next = newnode;
 }
+void insertAtHead(Node *&head, int val)
+{
+    // step 1 : creating a new node
+    Node *newNode = new Node(val);
+    // step 2 : point newnode next to head
+    newNode->next = head;
+    // step 3 : update head to newnode
+    head = newNode;
+}
 void display(Node *n)
 {
     while (n != NULL)
@@ -41,14 +50,28 @@ int main(void)
 {
     Node *head = NULL;
     int n;
-    char check = 'y';
-    while (check == 'y')
+
+    while (true)
     {
-        cout << "Enter Number to Add " << endl;
-        cin >> n;
-        insertAtTail(head, n);
-        cout << "Do You Want to Continue Add(y/n) " << endl;
+        int check;
+        cout << "Press 1 to insert at head or press 2 to insert at tail And any number to exit" << endl;
         cin >> check;
+        if (check == 1)
+        {
+            cout << "Enter Number to Add " << endl;
+            cin >> n;
+            insertAtHead(head, n);
+        }
+        else if (check == 2)
+        {
+            cout << "Enter Number to Add " << endl;
+            cin >> n;
+            insertAtTail(head, n);
+        }
+        else
+        {
+            break;
+        }
     }
 
     display(head);
