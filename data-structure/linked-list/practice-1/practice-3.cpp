@@ -33,3 +33,21 @@ int main(void)
          << "[" << ridx << "]"
          << "[" << cidx << "]" << endl;
 }
+/*
+3.	WAP that will take inputs of m x n sized matrix into a 2D array and find the maximum element with index location from that matrix.
+Sample input
+Sample output
+3 3
+1 2 3
+4 5 6
+2 9 2
+Max: 9
+Location: [2][1]
+2 3
+9 8 7
+3 4 5
+Max: 9
+Location: [0][0]
+
+
+*/
