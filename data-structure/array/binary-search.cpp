@@ -1,16 +1,38 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+int i = 1;
+void printarray(int arr[], int j, int n)
+{
+    for (int i = j; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
 int binary_search(int arr[], int el, int lb, int hb)
 {
     if (lb <= hb)
     {
         // calculating mid
         int mid = (lb + hb) / 2;
+        cout << "Step " << i << " : ";
+        cout << "Mid : " << mid << endl;
+        cout << "Searching 6  In ";
+        
+        printarray(arr, lb, hb);
+        i++;
         if (el == arr[mid])
+        {
+
             return mid;
-        else if (el < arr[mid]) // search on left side
+        }
+
+        else if (el < arr[mid])
+        {
+            // search on left side;
             return binary_search(arr, el, lb, mid - 1);
+        }
         else
             return binary_search(arr, el, mid + 1, hb); // search on right side
     }
@@ -43,3 +65,7 @@ int main(void)
     }
     return 0;
 }
+// step 1 : array = 1 2 9 11 17 24 26 31 32 45 and mid =
+// step 2 :
+
+// 11

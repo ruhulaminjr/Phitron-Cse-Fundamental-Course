@@ -30,6 +30,7 @@ int main(void)
             max = arr[i];
         }
     }
+    cout<<"Max : "<<max<<endl;
     int count[max + 1];
     for (int i = 0; i <= max; i++)
     {
@@ -39,9 +40,19 @@ int main(void)
     {
         count[arr[i]]++;
     }
+    cout<<"Counter Array:  ";
+    for(int i=0;i<=max;i++){
+        cout<<count[i]<<" ";
+    }
+    cout<<endl;
     for (int i = 1; i <= max; i++)
     {
         count[i] = count[i] + count[i - 1];
+    }
+    cout << "Presum Array:  ";
+    for (int i = 0; i <= max; i++)
+    {
+        cout << count[i] << " ";
     }
     int sorted[size];
     for (int i = size - 1; i >= 0; i--)
@@ -50,6 +61,8 @@ int main(void)
         int key = count[arr[i]];
         sorted[key] = arr[i];
     }
+    cout<<endl;
+    cout<<"Sorted Array : ";
     printArray(sorted, size);
 }
 // Counting Sort Algorithm Time Complexity O(n);
