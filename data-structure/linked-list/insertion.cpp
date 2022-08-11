@@ -20,9 +20,10 @@ void display(Node *node)
 {
     while (node != NULL)
     {
-        cout << "[";
-        cout << node->value << " | " << &node->nextVal;
-        cout << "] ->  ";
+        // cout << "[";
+        // cout << node->value << " | " << &node->nextVal;
+        // cout << "] ->  ";
+        cout << node->value << " -> ";
         node = node->nextVal;
     }
     cout << endl;
@@ -156,7 +157,23 @@ void insertAfterSpecificValueUnique(Node *&head, int search, int key)
     cout << "Update Linked List : ";
     display(head);
 }
-
+void insertAfterSpecificValueDubplicate(Node *&head, int search, int key)
+{
+    Test T;
+    T = searchDuplicateValueReturn(head, search);
+    if (T.counter[0] == 1)
+    {
+        cout << "Value Not found" << endl;
+        return;
+    }
+    for (int i = 1; i < T.counter[0]; i++)
+    {
+        int pos = T.counter[i] + i;
+        insertAtSpecificPosition(head, pos + 1, key);
+    }
+    cout << "Update Linked List : ";
+    display(head);
+}
 int main(void)
 {
     Node *head = NULL;
@@ -167,9 +184,9 @@ int main(void)
     cout << " 4.Search Unique Value :  " << endl;
     cout << " 5.Search Duplicate Value  :  " << endl;
     cout << " 6.Insert After Specific Value Unique :  " << endl;
-
+    cout << " 7.Insert After Specific Value Duplicate :  " << endl;
     cout << " 0. Exit : " << endl;
-    int flag = 33, pos;
+    int flag = 33, pos, src;
     while (flag != 0)
     {
         cout << "Enter Choice : ";
@@ -234,13 +251,19 @@ int main(void)
             }
             break;
         case 6:
-            int src;
             cout << "Enter Search Value : ";
             cin >> src;
             cout << "Enter Value To Insert : ";
             cin >> val;
             insertAfterSpecificValueUnique(head, src, val);
-
+            break;
+        case 7:
+            cout << "Enter Search Value : ";
+            cin >> src;
+            cout << "Enter Value To Insert : ";
+            cin >> val;
+            insertAfterSpecificValueDubplicate(head, src, val);
+            break;
         default:
             break;
         }
