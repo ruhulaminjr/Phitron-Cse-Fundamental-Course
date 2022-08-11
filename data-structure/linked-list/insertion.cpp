@@ -174,6 +174,18 @@ void insertAfterSpecificValueDubplicate(Node *&head, int search, int key)
     cout << "Update Linked List : ";
     display(head);
 }
+void deleteAtHead(Node* head){
+    Node *temp = head;
+    if(temp != NULL){
+        head = temp->nextVal;
+        delete temp;
+        cout << "Update Linked List : ";
+        display(head);
+    }else{
+        cout<<"There is No Element In Linked List "<<endl;
+    }
+   
+}
 int main(void)
 {
     Node *head = NULL;
@@ -185,6 +197,7 @@ int main(void)
     cout << " 5.Search Duplicate Value  :  " << endl;
     cout << " 6.Insert After Specific Value Unique :  " << endl;
     cout << " 7.Insert After Specific Value Duplicate :  " << endl;
+    cout << " 8.Delete Head Node : " << endl;
     cout << " 0. Exit : " << endl;
     int flag = 33, pos, src;
     while (flag != 0)
@@ -264,6 +277,8 @@ int main(void)
             cin >> val;
             insertAfterSpecificValueDubplicate(head, src, val);
             break;
+        case 8:
+            deleteAtHead(head);
         default:
             break;
         }
