@@ -3,6 +3,7 @@
   "files.associations": {
     "*.js": "javascriptreact",
     "iostream": "cpp",
-    "algorithm": "cpp"
+    "algorithm": "cpp",
+    "ostream": "cpp"
   }
 }

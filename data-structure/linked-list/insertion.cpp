@@ -18,6 +18,11 @@ struct Test
 };
 void display(Node *node)
 {
+    if (node == NULL)
+    {
+        cout << "No Element IN Linked List " << endl;
+        return;
+    }
     while (node != NULL)
     {
         // cout << "[";
@@ -174,17 +179,47 @@ void insertAfterSpecificValueDubplicate(Node *&head, int search, int key)
     cout << "Update Linked List : ";
     display(head);
 }
-void deleteAtHead(Node* head){
+void deleteAtHead(Node *head)
+{
     Node *temp = head;
-    if(temp != NULL){
+    if (temp != NULL)
+    {
         head = temp->nextVal;
         delete temp;
         cout << "Update Linked List : ";
         display(head);
-    }else{
-        cout<<"There is No Element In Linked List "<<endl;
     }
-   
+    else
+    {
+        cout << "There is No Element In Linked List " << endl;
+    }
+}
+void deleteAtTail(Node *head)
+{
+    Node *temp = head;
+    if (temp != NULL && temp->nextVal != NULL)
+    {
+        while (temp->nextVal->nextVal != NULL)
+        {
+            temp = temp->nextVal;
+        }
+        Node *delel = temp->nextVal;
+        temp->nextVal = NULL;
+        delete delel;
+        display(head);
+    }
+    else
+    {
+        if (temp == NULL)
+        {
+            cout << "There is No Element In Linked List " << endl;
+        }
+        else
+        {
+            head = NULL;
+            display(head);
+        }
+    }
 }
 int main(void)
 {
@@ -198,6 +233,7 @@ int main(void)
     cout << " 6.Insert After Specific Value Unique :  " << endl;
     cout << " 7.Insert After Specific Value Duplicate :  " << endl;
     cout << " 8.Delete Head Node : " << endl;
+    cout << " 9.Delete Tail Node : " << endl;
     cout << " 0. Exit : " << endl;
     int flag = 33, pos, src;
     while (flag != 0)
@@ -279,6 +315,10 @@ int main(void)
             break;
         case 8:
             deleteAtHead(head);
+            break;
+        case 9:
+            deleteAtTail(head);
+            break;
         default:
             break;
         }
