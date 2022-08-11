@@ -16,6 +16,17 @@ struct Test
 {
     int counter[1000];
 };
+void display(Node *node)
+{
+    while (node != NULL)
+    {
+        cout << "[";
+        cout << node->value << " | " << &node->nextVal;
+        cout << "] ->  ";
+        node = node->nextVal;
+    }
+    cout << endl;
+}
 void insertAtHead(Node *&head, int value)
 {
     Node *newNode = new Node(value);
@@ -138,15 +149,14 @@ Test searchDuplicateValueReturn(Node *head, int key)
     T.counter[0] = k;
     return T;
 }
-void display(Node *node)
+void insertAfterSpecificValueUnique(Node *&head, int search, int key)
 {
-    while (node != NULL)
-    {
-        cout << node->value << " -> ";
-        node = node->nextVal;
-    }
-    cout << endl;
+    int pos = searchAtUniqueValue(head, search);
+    insertAtSpecificPosition(head, pos + 1, key);
+    cout << "Update Linked List : ";
+    display(head);
 }
+
 int main(void)
 {
     Node *head = NULL;
@@ -155,6 +165,9 @@ int main(void)
     cout << " 2.Insert at Tail : " << endl;
     cout << " 3.Insert at Specific Position:  " << endl;
     cout << " 4.Search Unique Value :  " << endl;
+    cout << " 5.Search Duplicate Value  :  " << endl;
+    cout << " 6.Insert After Specific Value Unique :  " << endl;
+
     cout << " 0. Exit : " << endl;
     int flag = 33, pos;
     while (flag != 0)
@@ -220,6 +233,14 @@ int main(void)
                 cout << endl;
             }
             break;
+        case 6:
+            int src;
+            cout << "Enter Search Value : ";
+            cin >> src;
+            cout << "Enter Value To Insert : ";
+            cin >> val;
+            insertAfterSpecificValueUnique(head, src, val);
+
         default:
             break;
         }
