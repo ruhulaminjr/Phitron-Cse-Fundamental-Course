@@ -221,6 +221,72 @@ void deleteAtTail(Node *head)
         }
     }
 }
+void deletionAtSpecificPosition(Node *head, int pos)
+{
+    Node *temp = head;
+    if (temp != NULL && pos <= countNode(head))
+    {
+        if (pos == 1)
+        {
+            deleteAtHead(head);
+        }
+        else
+        {
+            int i = 1;
+            while (i < pos - 1)
+            {
+                temp = temp->nextVal;
+                i++;
+            }
+            Node *delEl = temp->nextVal;
+            temp->nextVal = delEl->nextVal;
+            delete delEl;
+            display(head);
+        }
+    }
+    else
+    {
+        if (pos > countNode(head) || pos < 1)
+        {
+            cout << "Invalid Positon " << endl;
+        }
+    }
+}
+void deleteBySpecificValueUnique(Node *head, int val)
+{
+    int pos;
+    pos = searchAtUniqueValue(head, val);
+    if (pos != -1)
+    {
+        deletionAtSpecificPosition(head, pos);
+    }
+    else
+    {
+        cout << "Invalid Value " << endl;
+    }
+}
+void deleteBySpecificValueDuplicate(Node *head, int val)
+{
+    // getting duplicate value positon;
+    Test T;
+    T = searchDuplicateValueReturn(head, val);
+    int size = T.counter[0];
+    if (size == 1)
+    {
+        cout << "No Element Found " << endl;
+    }
+    else
+    {
+        for (int i = 1; i < size; i++)
+        {
+
+            int pos;
+            pos = T.counter[i] + 2 - i;
+
+            deletionAtSpecificPosition(head, pos);
+        }
+    }
+}
 int main(void)
 {
     Node *head = NULL;
@@ -234,6 +300,9 @@ int main(void)
     cout << " 7.Insert After Specific Value Duplicate :  " << endl;
     cout << " 8.Delete Head Node : " << endl;
     cout << " 9.Delete Tail Node : " << endl;
+    cout << " 10.Delete At Specific Position : " << endl;
+    cout << " 11.Delete by Specific Value Unique List : " << endl;
+    cout << " 12.Delete by Specific Value Duplicate List : " << endl;
     cout << " 0. Exit : " << endl;
     int flag = 33, pos, src;
     while (flag != 0)
@@ -273,6 +342,7 @@ int main(void)
             {
                 cout << "Value Not Inserted Yet" << endl;
             }
+            break;
         case 5:
             cout << "Enter key to Search Double Position : " << endl;
             cin >> val;
@@ -318,6 +388,21 @@ int main(void)
             break;
         case 9:
             deleteAtTail(head);
+            break;
+        case 10:
+            cout << "Enter Position To Delete : ";
+            cin >> pos;
+            deletionAtSpecificPosition(head, pos);
+            break;
+        case 11:
+            cout << "Enter Value To Delete Unique List : ";
+            cin >> val;
+            deleteBySpecificValueUnique(head, val);
+            break;
+        case 12:
+            cout << "Enter Value To Delete Duplicate List " << endl;
+            cin >> val;
+            deleteBySpecificValueDuplicate(head, val);
             break;
         default:
             break;
