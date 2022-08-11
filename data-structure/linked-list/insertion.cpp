@@ -12,6 +12,10 @@ public:
         this->nextVal = NULL;
     }
 };
+struct Test
+{
+    int counter[1000];
+};
 void insertAtHead(Node *&head, int value)
 {
     Node *newNode = new Node(value);
@@ -115,6 +119,25 @@ void searchAtMultipleValue(Node *head, int key)
         cout << endl;
     }
 }
+Test searchDuplicateValueReturn(Node *head, int key)
+{
+    Node *temp = head;
+    Test T;
+    int i = 0;
+    int k = 1;
+    while (temp != NULL)
+    {
+        if (temp->value == key)
+        {
+            T.counter[k] = i;
+            k++;
+        }
+        temp = temp->nextVal;
+        i++;
+    }
+    T.counter[0] = k;
+    return T;
+}
 void display(Node *node)
 {
     while (node != NULL)
@@ -133,7 +156,7 @@ int main(void)
     cout << " 3.Insert at Specific Position:  " << endl;
     cout << " 4.Search Unique Value :  " << endl;
     cout << " 0. Exit : " << endl;
-    int flag, pos;
+    int flag = 33, pos;
     while (flag != 0)
     {
         cout << "Enter Choice : ";
@@ -174,9 +197,29 @@ int main(void)
         case 5:
             cout << "Enter key to Search Double Position : " << endl;
             cin >> val;
-            searchAtMultipleValue(head, val);
-            break;
+            // searchAtMultipleValue(head, val);
+            Test T;
+            T = searchDuplicateValueReturn(head, val);
 
+            if (T.counter[0] == 1)
+            {
+                cout << "Your Value Not Inserted Yet " << endl;
+            }
+            else
+            {
+                int size = T.counter[0];
+                cout << "Your Search Value Fount At : ";
+                for (int i = 1; i < size; i++)
+                {
+                    cout << T.counter[i];
+                    if (i < size - 1)
+                    {
+                        cout << " , ";
+                    }
+                }
+                cout << endl;
+            }
+            break;
         default:
             break;
         }
