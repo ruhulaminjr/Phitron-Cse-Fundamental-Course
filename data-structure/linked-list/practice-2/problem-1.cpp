@@ -159,6 +159,28 @@ int *searchValueAtDuplicateList(Node *head, int value)
         return arr;
     }
 }
+//  Insertion after a specific value (Unique List)  //
+void insertAfterSpecficValueUnique(Node *head, int value, int key)
+{
+    int pos = searchValueAtUniqueList(head, value);
+    if (pos == -1)
+    {
+        cout << "No Value found in linked list " << endl;
+        return;
+    }
+    insertAtSpecificPosition(head, pos + 1, key);
+}
+//  Insertion after a specific value (Duplication enabled List) //
+void insertAfterSpecificValueDuplicate(Node *head, int value, int key)
+{
+    int *pos = searchValueAtDuplicateList(head, value);
+    for (int i = 1; i < pos[0]; i++)
+    {
+        int position = pos[i] + i;
+        insertAtSpecificPosition(head, position, key);
+    }
+}
+
 int main(void)
 {
     Node *head = NULL;
@@ -168,6 +190,8 @@ int main(void)
     insertAtTail(head, 19);
     insertAtTail(head, 11);
     insertAtSpecificPosition(head, 3, 99);
+    insertAfterSpecficValueUnique(head, 19, 999);
+    insertAfterSpecificValueDuplicate(head,11,121);
     // cout << searchValueAtUniqueList(head, 99) << endl;
     int *dupPos = searchValueAtDuplicateList(head, 11);
     if (dupPos != NULL)
@@ -224,8 +248,11 @@ step 1 : iterate all node elemnt and count i
 step 2 : every time value match with node value i store in a array k position
 step 3 : return the array;
 //  Insertion after a specific value (Unique List)  //
-
-Insertion after a specific value (Duplication enabled List)
+step 1 : find the positon of the value
+step 2 : then call insertatspecific position pass position and value;
+//  Insertion after a specific value (Duplication enabled List) //
+step 1 : find the all the position of the value
+step 2 : then insert Node after each positon but every change positon + i;
 Deletion at Head
 Deletion at Tail
 Deletion at a Specific Position
