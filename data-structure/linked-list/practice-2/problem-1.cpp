@@ -245,6 +245,21 @@ Node *deletionAtSpecificPosition(Node *head, int pos)
     delete delEl;
     return head;
 }
+
+//  Deletion by Value (Unique List) //
+Node *deletionByValueUnique(Node *head, int value)
+{
+    int pos = searchValueAtUniqueList(head, value);
+    if (pos == -1)
+    {
+        cout << "Value Position Not found" << endl;
+        return head;
+    }
+    else
+    {
+        return deletionAtSpecificPosition(head, pos);
+    }
+}
 int main(void)
 {
     Node *head = NULL;
@@ -259,6 +274,7 @@ int main(void)
     head = deletionAtHead(head);
     head = deletionAtTail(head);
     head = deletionAtSpecificPosition(head, 2);
+    head = deletionByValueUnique(head, 999);
     // cout << searchValueAtUniqueList(head, 99) << endl;
     int *dupPos = searchValueAtDuplicateList(head, 11);
     if (dupPos != NULL)
@@ -332,6 +348,6 @@ step 1 : set a counter variable
 step 2 : run while loop until counter variable < position and set temp node to temp->next node
 step 3 : then set temp->next equal to temp->next->next
 step 4 : then delete temp->next;
-Deletion by Value (Unique List)
+//  Deletion by Value (Unique List) //
 Deletion by Value(Duplication enabled List)
 */
