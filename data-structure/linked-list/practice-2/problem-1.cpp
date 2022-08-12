@@ -217,6 +217,34 @@ Node *deletionAtTail(Node *head)
         return deletionAtHead(temp);
     }
 }
+//  Deletion at a Specific Position  //
+Node *deletionAtSpecificPosition(Node *head, int pos)
+{
+    Node *temp = head;
+    int i = 1;
+    if (pos == 1)
+    {
+        return deletionAtHead(head);
+    }
+    if (pos > countNode(head))
+    {
+        cout << "Position OUt of Range" << endl;
+        return NULL;
+    }
+    if (pos == countNode(head))
+    {
+        return deletionAtTail(head);
+    }
+    while (i < pos - 1)
+    {
+        temp = temp->Next;
+        i++;
+    }
+    Node *delEl = temp->Next;
+    temp->Next = delEl->Next;
+    delete delEl;
+    return head;
+}
 int main(void)
 {
     Node *head = NULL;
@@ -230,6 +258,7 @@ int main(void)
     insertAfterSpecificValueDuplicate(head, 11, 121);
     head = deletionAtHead(head);
     head = deletionAtTail(head);
+    head = deletionAtSpecificPosition(head, 2);
     // cout << searchValueAtUniqueList(head, 99) << endl;
     int *dupPos = searchValueAtDuplicateList(head, 11);
     if (dupPos != NULL)
@@ -298,7 +327,11 @@ step 2 : delete head;
 step 1 : find the Node that point to tail node
 step 2 : after that change the node next to NULL
 step 3 : delete the tail;
-Deletion at a Specific Position
+//  Deletion at a Specific Position  //
+step 1 : set a counter variable
+step 2 : run while loop until counter variable < position and set temp node to temp->next node
+step 3 : then set temp->next equal to temp->next->next
+step 4 : then delete temp->next;
 Deletion by Value (Unique List)
 Deletion by Value(Duplication enabled List)
 */
