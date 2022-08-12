@@ -1,4 +1,4 @@
-#include <iostream>
+#include <bits/stdc++.h>
 
 using namespace std;
 class Node
@@ -123,14 +123,61 @@ int searchValueAtUniqueList(Node *head, int value)
         return i;
     }
 }
+//  Search a value (Duplication enabled List)  //
+int *searchValueAtDuplicateList(Node *head, int value)
+{
+    int count = countNode(head);
+    if (count == -1)
+    {
+        cout << "No Element In The LInked List " << endl;
+        return NULL;
+    }
+    int *arr = new int[count];
+    int k = 1;
+    int i = 1;
+    int flag = 0;
+    Node *temp = head;
+    while (temp != NULL)
+    {
+        if (temp->value == value)
+        {
+            arr[k] = i;
+            flag = 1;
+            k++;
+        }
+        temp = temp->Next;
+        i++;
+    }
+    if (flag == 0)
+    {
+        cout << "No Element Matched IN Node List" << endl;
+        return NULL;
+    }
+    else
+    {
+        arr[0] = k;
+        return arr;
+    }
+}
 int main(void)
 {
     Node *head = NULL;
     insertAtHead(head, 55);
     insertAtHead(head, 11);
+    insertAtTail(head, 11);
     insertAtTail(head, 19);
+    insertAtTail(head, 11);
     insertAtSpecificPosition(head, 3, 99);
-    cout << searchValueAtUniqueList(head, 99) << endl;
+    // cout << searchValueAtUniqueList(head, 99) << endl;
+    int *dupPos = searchValueAtDuplicateList(head, 11);
+    if (dupPos != NULL)
+    {
+        for (int i = 1; i < dupPos[0]; i++)
+        {
+            cout << dupPos[i] << " ";
+        }
+        cout << endl;
+    }
     Display(head);
 }
 
@@ -172,8 +219,12 @@ step 3 : set position node next into new node;
 step 1 : set a counter variable and iterator node and count incress by one
 step 2 : if node value matched with user value then return the counter variable ;
 
-Search a value (Duplication enabled List)
-Insertion after a specific value (Unique List)
+//  Search a value (Duplication enabled List)  //
+step 1 : iterate all node elemnt and count i
+step 2 : every time value match with node value i store in a array k position
+step 3 : return the array;
+//  Insertion after a specific value (Unique List)  //
+
 Insertion after a specific value (Duplication enabled List)
 Deletion at Head
 Deletion at Tail
