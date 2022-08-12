@@ -260,6 +260,17 @@ Node *deletionByValueUnique(Node *head, int value)
         return deletionAtSpecificPosition(head, pos);
     }
 }
+//  Deletion by Value(Duplication enabled List)  //
+Node* DeletionbyValueDuplicate(Node *head, int value)
+{
+    int *arr = searchValueAtDuplicateList(head, value);
+    for (int i = 1; i < arr[0]; i++)
+    {
+        int pos = arr[i] + 1 - i;
+        head = deletionAtSpecificPosition(head, pos);
+    }
+    return head;
+}
 int main(void)
 {
     Node *head = NULL;
@@ -276,6 +287,7 @@ int main(void)
     head = deletionAtSpecificPosition(head, 2);
     head = deletionByValueUnique(head, 999);
     // cout << searchValueAtUniqueList(head, 99) << endl;
+    head = DeletionbyValueDuplicate(head,11);
     int *dupPos = searchValueAtDuplicateList(head, 11);
     if (dupPos != NULL)
     {
@@ -349,5 +361,9 @@ step 2 : run while loop until counter variable < position and set temp node to t
 step 3 : then set temp->next equal to temp->next->next
 step 4 : then delete temp->next;
 //  Deletion by Value (Unique List) //
-Deletion by Value(Duplication enabled List)
+step 1 : find the position of the value
+step 2 : call insert at position function;
+//  Deletion by Value(Duplication enabled List)  //
+step 1 : find all the duplicate value position
+step 2 : and call insertAtposition for every duplicate element and increase position by 1;
 */
