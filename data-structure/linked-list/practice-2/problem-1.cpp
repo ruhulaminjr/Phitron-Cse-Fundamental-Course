@@ -180,18 +180,56 @@ void insertAfterSpecificValueDuplicate(Node *head, int value, int key)
         insertAtSpecificPosition(head, position, key);
     }
 }
-
+//  Deletion at Head //
+Node *deletionAtHead(Node *head)
+{
+    Node *temp = head;
+    if (temp != NULL)
+    {
+        head = temp->Next;
+        delete temp;
+        return head;
+    }
+    else
+    {
+        cout << "No Element found ";
+        return NULL;
+    }
+}
+//  Deletion at Tail //
+Node *deletionAtTail(Node *head)
+{
+    Node *temp = head;
+    if (temp != NULL && temp->Next != NULL)
+    {
+        while (temp->Next->Next != NULL)
+        {
+            temp = temp->Next;
+        }
+        cout << head->value << endl;
+        Node *delEl = temp->Next->Next;
+        temp->Next = NULL;
+        delete delEl;
+        return head;
+    }
+    else
+    {
+        return deletionAtHead(temp);
+    }
+}
 int main(void)
 {
     Node *head = NULL;
     insertAtHead(head, 55);
-    insertAtHead(head, 11);
+    insertAtHead(head, 12);
     insertAtTail(head, 11);
     insertAtTail(head, 19);
     insertAtTail(head, 11);
     insertAtSpecificPosition(head, 3, 99);
     insertAfterSpecficValueUnique(head, 19, 999);
-    insertAfterSpecificValueDuplicate(head,11,121);
+    insertAfterSpecificValueDuplicate(head, 11, 121);
+    head = deletionAtHead(head);
+    head = deletionAtTail(head);
     // cout << searchValueAtUniqueList(head, 99) << endl;
     int *dupPos = searchValueAtDuplicateList(head, 11);
     if (dupPos != NULL)
@@ -253,8 +291,13 @@ step 2 : then call insertatspecific position pass position and value;
 //  Insertion after a specific value (Duplication enabled List) //
 step 1 : find the all the position of the value
 step 2 : then insert Node after each positon but every change positon + i;
-Deletion at Head
-Deletion at Tail
+//  Deletion at Head //
+step 1 : set head next el to head
+step 2 : delete head;
+//  Deletion at Tail //
+step 1 : find the Node that point to tail node
+step 2 : after that change the node next to NULL
+step 3 : delete the tail;
 Deletion at a Specific Position
 Deletion by Value (Unique List)
 Deletion by Value(Duplication enabled List)
