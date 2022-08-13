@@ -287,6 +287,43 @@ void deleteBySpecificValueDuplicate(Node *head, int val)
         }
     }
 }
+Node *reverseNodeNonRecursive(Node *head)
+{
+    Node *prev = NULL;
+    Node *current = head;
+    if (head == NULL)
+    {
+        cout << "No Element in the LINKed LIst " << endl;
+        return head;
+    }
+    Node *Next = head->nextVal;
+
+    while (1)
+    {
+        current->nextVal = prev;
+        prev = current;
+        current = Next;
+        if (current == NULL)
+            break;
+        Next = Next->nextVal;
+    }
+    return prev;
+    // 1 > 2 > 3 > 4 > 5 > NULL
+    // 1 > NULL 2 > 1 3 > 2 > 4 > 3 > 5 > 4
+    // return 5 ;
+}
+
+Node *reverseLinkedLIstRecursive(Node *head)
+{
+    if (head->nextVal == NULL)
+    {
+        return head;
+    }
+    Node *newHead = reverseNodeNonRecursive(head->nextVal);
+    head->nextVal->nextVal = head;
+    head->nextVal = NULL;
+    return newHead;
+}
 int main(void)
 {
     Node *head = NULL;
@@ -303,6 +340,8 @@ int main(void)
     cout << " 10.Delete At Specific Position : " << endl;
     cout << " 11.Delete by Specific Value Unique List : " << endl;
     cout << " 12.Delete by Specific Value Duplicate List : " << endl;
+    cout << " 13.Reverse Linked List Non Recursive : " << endl;
+    cout << " 14.Reverse Linked List Recursive : " << endl;
     cout << " 0. Exit : " << endl;
     int flag = 33, pos, src;
     while (flag != 0)
@@ -404,6 +443,11 @@ int main(void)
             cin >> val;
             deleteBySpecificValueDuplicate(head, val);
             break;
+        case 13:
+            head = reverseNodeNonRecursive(head);
+            break;
+        case 14:
+            head = reverseLinkedLIstRecursive(head);
         default:
             break;
         }
