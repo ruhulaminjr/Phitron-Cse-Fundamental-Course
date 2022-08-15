@@ -86,13 +86,14 @@ bool checkCycle(Node *&head)
 {
     Node *fast = head;
     Node *slow = head;
-    if(head == NULL){
-        cout<<"No Element in LInked List "<<endl;
+    if (head == NULL)
+    {
+        cout << "No Element in LInked List " << endl;
         return false;
     }
     while (fast != NULL && fast->next != NULL)
     {
-       
+
         fast = fast->next->next;
         slow = slow->next;
         if (fast->next == slow->next)
@@ -102,6 +103,24 @@ bool checkCycle(Node *&head)
     }
     return false;
 }
+void removeCycle(Node *head)
+{
+    Node *fast = head;
+    Node *slow = head;
+    do
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+    } while (slow != fast);
+
+    fast = head;
+    while (slow->next != fast->next)
+    {
+        fast = fast->next;
+        slow = slow->next;
+    }
+    slow->next = NULL;
+}
 int main(void)
 {
     Node *head = NULL;
@@ -109,7 +128,9 @@ int main(void)
     cout << " 2.Find The Mid Point (slow/fast) : " << endl;
     cout << " 3.Make Cycle In Linked List : " << endl;
     cout << " 4.Check Cycle Linked List : " << endl;
-    int flag = 33, pos, src;
+    cout << " 5.Remove Cycle Linked List : " << endl;
+    int flag = 33, pos;
+    int check;
     while (flag != 0)
     {
         cout << "Enter Choice : ";
@@ -137,7 +158,6 @@ int main(void)
             makeCycle(head, pos);
             break;
         case 4:
-            int check;
             check = checkCycle(head);
             if (check)
             {
@@ -147,6 +167,18 @@ int main(void)
             {
                 cout << "Linked List is No Cycle List" << endl;
             }
+        case 5:
+            check = checkCycle(head);
+            if (check)
+            {
+                removeCycle(head);
+                cout << "Cycle Removed Successfully" << endl;
+            }
+            else
+            {
+                cout << "Linked List is No Cycle List" << endl;
+            }
+            break;
         default:
             break;
         }
