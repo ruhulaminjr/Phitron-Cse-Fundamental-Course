@@ -42,7 +42,7 @@ int main(void)
     }
     cout << endl;
 
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 7; i++)
     {
         int val = pop(stacks);
         cout << "val : " << val << " ";
