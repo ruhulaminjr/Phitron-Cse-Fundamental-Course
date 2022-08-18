@@ -1,23 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+template <typename N>
 class Node
 {
 public:
-    int value;
+    N value;
     Node *prev;
     Node *next;
-    Node(int value)
+    Node(N value)
     {
         this->value = value;
         this->prev = NULL;
         this->next = NULL;
     }
 };
+template <typename T>
 class Stacks
 {
-    Node *head;
-    Node *top;
+    Node<T> *head;
+    Node<T> *top;
     int count = 0;
 
 public:
@@ -28,9 +30,9 @@ public:
         this->top = NULL;
     }
     // push
-    void push(int value)
+    void push(T value)
     {
-        Node *newNode = new Node(value);
+        Node<T> *newNode = new Node<T>(value);
         if (head == NULL)
         {
             head = top = newNode;
@@ -43,13 +45,13 @@ public:
         count++;
     }
     // pop
-    int pop()
+    T pop()
     {
-        int value;
+        T value;
         if (head == NULL)
         {
             cout << "Stack is Now Empty : " << endl;
-            return -1;
+            return value;
         }
         if (head == top)
         {
@@ -58,7 +60,7 @@ public:
             count--;
             return value;
         }
-        Node *delNode = top;
+        Node<T> *delNode = top;
         top = delNode->prev;
         top->next = NULL;
         count--;
@@ -79,7 +81,7 @@ public:
         return count;
     }
     //  top
-    int topValue()
+    T topValue()
     {
         if (top == NULL)
         {
