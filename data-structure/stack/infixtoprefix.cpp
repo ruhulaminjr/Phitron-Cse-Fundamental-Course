@@ -97,7 +97,7 @@ string infixToPrefix(string str)
 }
 int main(void)
 {
-    string infixStr = "(7+(4*5)-(2+0)";
+    string infixStr = "(+9*3/8 4)";
     cout << infixToPrefix(infixStr) << endl;
     cout << prefixEvaluation(infixToPrefix(infixStr)) << endl;
 }
