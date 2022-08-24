@@ -18,6 +18,7 @@ class Queue
 public:
     Node<T> *front;
     Node<T> *rear;
+    int count = 0;
     Queue()
     {
         this->front = NULL;
@@ -31,10 +32,12 @@ public:
         {
             front = newNode;
             rear = newNode;
+            count++;
             return;
         }
         rear->next = newNode;
         rear = rear->next;
+        count++;
     }
     // Dequeue ---> Pop Operation
     T pop()
@@ -54,6 +57,7 @@ public:
         }
         chk = delEl->value;
         delete delEl;
+        count--;
         return chk;
     }
     // Peek ---> Front() and Back Operation
@@ -88,5 +92,10 @@ public:
 
         else
             return false;
+    }
+    // return the size of the q
+    int size()
+    {
+        return count;
     }
 };
