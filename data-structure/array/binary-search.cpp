@@ -17,9 +17,9 @@ int binary_search(int arr[], int el, int lb, int hb)
         // calculating mid
         int mid = (lb + hb) / 2;
         cout << "Step " << i << " : ";
-        cout << "Mid : " << mid << endl;
-        cout << "Searching 6  In ";
-        
+        cout << "Mid : " << mid << "Mid El " << arr[mid] << endl;
+        cout << "Searching In ";
+
         printarray(arr, lb, hb);
         i++;
         if (el == arr[mid])
