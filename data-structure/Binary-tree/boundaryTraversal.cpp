@@ -52,36 +52,62 @@ void printTree(treeNode *root, int level)
         printTree(root->rightChild, level + 1);
     }
 }
-void InOrderTrav(treeNode *root, string &str)
+void LbNonLeaf(treeNode *root)
 {
     if (root == NULL)
-    {
         return;
+    if (root->leftChild != NULL)
+    {
+        cout << root->value << " ";
+        LbNonLeaf(root->leftChild);
     }
-    InOrderTrav(root->leftChild, str);
-    str += to_string(root->value);
-    InOrderTrav(root->rightChild, str);
+    else if (root->rightChild != NULL)
+    {
+        cout << root->value << " ";
+        LbNonLeaf(root->rightChild);
+    }
 }
-void postOrderTrav(treeNode *root, string &str)
+void printLeaf(treeNode *root)
 {
     if (root == NULL)
     {
         return;
     }
-    postOrderTrav(root->leftChild, str);
-    postOrderTrav(root->rightChild, str);
-    str += to_string(root->value);
+    if (root->leftChild == NULL && root->rightChild == NULL)
+    {
+        cout << root->value << " ";
+    }
+    printLeaf(root->leftChild);
+    printLeaf(root->rightChild);
 }
-void preOrderTrav(treeNode *root, string &str)
+void RbNonLeaf(treeNode *root)
 {
     if (root == NULL)
-    {
         return;
+    if (root->rightChild != NULL)
+    {
+        cout << root->value << " ";
+        LbNonLeaf(root->rightChild);
     }
-    str += to_string(root->value);
-    // cout<<root->value<< " ";
-    preOrderTrav(root->leftChild, str);
-    preOrderTrav(root->rightChild, str);
+    else if (root->leftChild != NULL)
+    {
+        cout << root->value << " ";
+        LbNonLeaf(root->leftChild);
+    }
+}
+void BoundaryTraversal(treeNode *root)
+{
+    // print Root
+    cout << root->value << " ";
+    // left Non leaf
+    LbNonLeaf(root->leftChild);
+    // PrintLeaf
+    printLeaf(root->leftChild);
+    // Right Leaf
+    printLeaf(root->rightChild);
+
+    // Right Non leaf
+    RbNonLeaf(root->rightChild);
 }
 int main(void)
 {
@@ -110,16 +136,9 @@ int main(void)
             q.push(rightNode);
     }
     printTree(root, 0);
-    string inOrderTraversal = " ";
-    string preOrderTraversal = " ";
-    string postOrderTraversal = " ";
-
-    InOrderTrav(root, inOrderTraversal);
-    cout << "Inorder Traversal : " << inOrderTraversal << endl;
-    preOrderTrav(root, preOrderTraversal);
-    cout << "PreOrder Traversal : " << preOrderTraversal << endl;
-    postOrderTrav(root, postOrderTraversal);
-    cout << "PostOrder Traversal : " << postOrderTraversal << endl;
+    cout << "Boundary of Tree : " << endl;
+    BoundaryTraversal(root);
+    cout << endl;
 }
 /*
 0

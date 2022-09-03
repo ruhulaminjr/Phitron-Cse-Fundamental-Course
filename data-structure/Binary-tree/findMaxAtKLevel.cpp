@@ -14,7 +14,7 @@ public:
         right = NULL;
     }
 };
-int levelOrderTraversal(treeNode *root,int k)
+int levelOrderTraversal(treeNode *root, int k)
 {
     if (root == NULL)
     {
