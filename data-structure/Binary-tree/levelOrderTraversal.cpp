@@ -45,26 +45,30 @@ string levelOrderTraversal(treeNode *root)
 }
 int main(void)
 {
-    int n;
-    cin >> n;
-    treeNode *allNodes[n];
-    for (int i = 0; i < n; i++)
+    int a;
+    cin >> a;
+    treeNode *root = new treeNode(a);
+    queue<treeNode *> q;
+    q.push(root);
+    while (!q.empty())
     {
-        allNodes[i] = new treeNode(-1);
-    }
-    for (int i = 0; i < n; i++)
-    {
-        int val, left, right;
-        cin >> val >> left >> right;
-        allNodes[i]->data = val;
+        treeNode *presentRoot = q.front();
+        q.pop();
+        int left, right;
+        cin >> left >> right;
+        treeNode *leftNode = NULL;
+        treeNode *rightNode = NULL;
         if (left != -1)
-        {
-            allNodes[i]->left = allNodes[left];
-        }
+            leftNode = new treeNode(left);
         if (right != -1)
-        {
-            allNodes[i]->right = allNodes[right];
-        }
+            rightNode = new treeNode(right);
+        presentRoot->leftChild = leftNode;
+        presentRoot->rightChild = rightNode;
+        if (leftNode != NULL)
+            q.push(leftNode);
+        if (rightNode != NULL)
+            q.push(rightNode);
     }
+    printTree(root, 0);
     cout << levelOrderTraversal(allNodes[0]) << endl;
 }

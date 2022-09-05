@@ -3,17 +3,16 @@ using namespace std;
 class treeNode
 {
 public:
-    int data;
+    int value;
     treeNode *leftChild;
     treeNode *rightChild;
     treeNode(int value)
     {
-        this->data = value;
+        this->value = value;
         this->leftChild = NULL;
         this->rightChild = NULL;
     }
 };
-
 void spaces(int level)
 {
     for (int i = 0; i < level; i++)
@@ -29,7 +28,7 @@ void printTree(treeNode *root, int level)
     }
     if (root->leftChild == NULL && root->rightChild == NULL)
     {
-        cout << root->data << endl;
+        cout << root->value << endl;
         return;
     }
     else
@@ -37,7 +36,7 @@ void printTree(treeNode *root, int level)
         cout << endl;
         spaces(level);
         cout << "Root : ";
-        cout << root->data;
+        cout << root->value;
         cout << endl;
     }
     if (root->leftChild != NULL)
@@ -53,58 +52,42 @@ void printTree(treeNode *root, int level)
         printTree(root->rightChild, level + 1);
     }
 }
-void findKNodeinOrder(treeNode *root, int k)
+
+void getAns(treeNode *root, vector<int> &v)
 {
-    static int count = 0;
     if (root == NULL)
-    {
         return;
-    }
-    if (count <= k)
-    {
-        findKNodeinOrder(root->leftChild, k);
-        count++;
-        if (count == k)
-        {
-            cout << root->data << endl;
-        }
-        findKNodeinOrder(root->rightChild, k);
-    }
+    getAns(root->leftChild, v);
+    getAns(root->rightChild, v);
+    v.push_back(root->value);
+}
+bool isSame(treeNode *root1, treeNode *root2)
+{
+    vector<int> a;
+    vector<int> b;
+    getAns(root1, a);
+    getAns(root2, b);
+    return a == b;
 }
 int main(void)
 {
-    int n;
-    cin >> n;
-    int k;
-    cin >> k;
     int a;
     cin >> a;
-    queue<treeNode *> q;
     treeNode *root = new treeNode(a);
+    queue<treeNode *> q;
     q.push(root);
-    int chk = 0;
     while (!q.empty())
     {
         treeNode *presentRoot = q.front();
         q.pop();
-        int w;
-        if (chk != 0)
-        {
-            cin >> w;
-        }
-        chk = 1;
         int left, right;
         cin >> left >> right;
         treeNode *leftNode = NULL;
         treeNode *rightNode = NULL;
         if (left != -1)
-        {
             leftNode = new treeNode(left);
-        }
         if (right != -1)
-        {
             rightNode = new treeNode(right);
-        }
         presentRoot->leftChild = leftNode;
         presentRoot->rightChild = rightNode;
         if (leftNode != NULL)
@@ -113,22 +96,47 @@ int main(void)
             q.push(rightNode);
     }
     printTree(root, 0);
-    findKNodeinOrder(root, k);
+    cout << "Enter Root 2 " << endl;
+    int b;
+    cin >> b;
+    treeNode *root2 = new treeNode(b);
+    queue<treeNode *> q1;
+    q1.push(root2);
+    while (!q1.empty())
+    {
+        treeNode *presentRoot = q1.front();
+        q1.pop();
+        int left, right;
+        cin >> left >> right;
+        treeNode *leftNode = NULL;
+        treeNode *rightNode = NULL;
+        if (left != -1)
+            leftNode = new treeNode(left);
+        if (right != -1)
+            rightNode = new treeNode(right);
+        presentRoot->leftChild = leftNode;
+        presentRoot->rightChild = rightNode;
+        if (leftNode != NULL)
+            q1.push(leftNode);
+        if (rightNode != NULL)
+            q1.push(rightNode);
+    }
+    printTree(root2,0);
+    cout << isSame(root, root2) << endl;
 }
-
 /*
-5 2
-1 2 3
-2 4 5
-3 -1 -1
-4 -1 -1
-5 -1 -1
-
-         1
-        / \
-       2   3
-      / \
-     4   5
-
-
+0
+1 2
+3 4 5 6
+-1 -1 -1 -1
+7 8 -1 -1
+-1 -1 -1 -1
+*/
+/*
+0
+1 3
+3 4 5 6
+-1 -1 -1 -1
+7 8 -1 -1
+-1 -1 -1 -1
 */

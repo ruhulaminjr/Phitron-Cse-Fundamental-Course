@@ -3,17 +3,16 @@ using namespace std;
 class treeNode
 {
 public:
-    int data;
+    int value;
     treeNode *leftChild;
     treeNode *rightChild;
     treeNode(int value)
     {
-        this->data = value;
+        this->value = value;
         this->leftChild = NULL;
         this->rightChild = NULL;
     }
 };
-
 void spaces(int level)
 {
     for (int i = 0; i < level; i++)
@@ -29,7 +28,7 @@ void printTree(treeNode *root, int level)
     }
     if (root->leftChild == NULL && root->rightChild == NULL)
     {
-        cout << root->data << endl;
+        cout << root->value << endl;
         return;
     }
     else
@@ -37,7 +36,7 @@ void printTree(treeNode *root, int level)
         cout << endl;
         spaces(level);
         cout << "Root : ";
-        cout << root->data;
+        cout << root->value;
         cout << endl;
     }
     if (root->leftChild != NULL)
@@ -53,58 +52,99 @@ void printTree(treeNode *root, int level)
         printTree(root->rightChild, level + 1);
     }
 }
-void findKNodeinOrder(treeNode *root, int k)
+
+void level_order(treeNode *root)
 {
-    static int count = 0;
     if (root == NULL)
     {
         return;
     }
-    if (count <= k)
+    queue<treeNode *> q;
+    q.push(root);
+    q.push(NULL);
+    while (!q.empty())
     {
-        findKNodeinOrder(root->leftChild, k);
-        count++;
-        if (count == k)
+        treeNode *Node = q.front();
+        q.pop();
+        if (Node != NULL)
         {
-            cout << root->data << endl;
+            cout << Node->value << " ";
+            if (Node->leftChild != NULL)
+            {
+                q.push(Node->leftChild);
+            }
+            if (Node->rightChild != NULL)
+            {
+                q.push(Node->rightChild);
+            }
         }
-        findKNodeinOrder(root->rightChild, k);
+        else if (!q.empty())
+        {
+            q.push(NULL);
+        }
     }
+    cout << endl;
 }
+
+void level_order_reverse(treeNode *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+    queue<treeNode *> q;
+    q.push(root);
+    q.push(NULL);
+    stack<treeNode *> st;
+    while (!q.empty())
+    {
+        treeNode *Node = q.front();
+        q.pop();
+        if (Node != NULL)
+        {
+            st.push(Node);
+            if (Node->rightChild != NULL)
+            {
+                q.push(Node->rightChild);
+            }
+            if (Node->leftChild != NULL)
+            {
+                q.push(Node->leftChild);
+            }
+        }
+        else if (!q.empty())
+        {
+            q.push(NULL);
+        }
+    }
+    while (!st.empty())
+    {
+        treeNode *Node = st.top();
+        st.pop();
+        cout << Node->value << " ";
+    }
+    cout << endl;
+}
+
 int main(void)
 {
-    int n;
-    cin >> n;
-    int k;
-    cin >> k;
     int a;
     cin >> a;
-    queue<treeNode *> q;
     treeNode *root = new treeNode(a);
+    queue<treeNode *> q;
     q.push(root);
-    int chk = 0;
     while (!q.empty())
     {
         treeNode *presentRoot = q.front();
         q.pop();
-        int w;
-        if (chk != 0)
-        {
-            cin >> w;
-        }
-        chk = 1;
         int left, right;
         cin >> left >> right;
         treeNode *leftNode = NULL;
         treeNode *rightNode = NULL;
         if (left != -1)
-        {
             leftNode = new treeNode(left);
-        }
         if (right != -1)
-        {
             rightNode = new treeNode(right);
-        }
         presentRoot->leftChild = leftNode;
         presentRoot->rightChild = rightNode;
         if (leftNode != NULL)
@@ -113,22 +153,26 @@ int main(void)
             q.push(rightNode);
     }
     printTree(root, 0);
-    findKNodeinOrder(root, k);
+    level_order_reverse(root);
 }
-
 /*
-5 2
-1 2 3
-2 4 5
-3 -1 -1
-4 -1 -1
-5 -1 -1
-
-         1
-        / \
-       2   3
-      / \
-     4   5
-
-
+0
+1 2
+3 4 5 6
+-1 -1 -1 -1
+7 8 -1 -1
+-1 -1 -1 -1
+*/
+/*
+0
+1 3
+3 4 5 6
+-1 -1 -1 -1
+7 8 -1 -1
+-1 -1 -1 -1
+*/
+/*
+3 9 20
+-1 -1 15 7
+-1 -1 -1 -1
 */
