@@ -53,20 +53,28 @@ void printTree(treeNode *root, int level)
     }
 }
 
-treeNode *invert_tree(treeNode *root)
+int result = 0;
+int depthFirstSearch(treeNode *root)
 {
     if (root == NULL)
     {
-        return NULL;
+        return 0;
     }
-    treeNode *temp = root->leftChild;
-    root->leftChild = root->rightChild;
-    root->rightChild = temp;
-    invert_tree(root->leftChild);
-    invert_tree(root->rightChild);
-    return root;
+    int left = depthFirstSearch(root->leftChild);
+    int right = depthFirstSearch(root->rightChild);
+    int tilt = abs(left - right);
+    result += tilt;
+    return root->value + left + right;
 }
-
+int findTilt(treeNode *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+    depthFirstSearch(root);
+    return result;
+}
 int main(void)
 {
     int a;
@@ -94,12 +102,10 @@ int main(void)
             q.push(rightNode);
     }
     printTree(root, 0);
-    root = invert_tree(root);
-    cout << "Inverted Binary Tree : " << endl;
-    printTree(root, 0);
+    cout << findTilt(root) << endl;
 }
 /*
-4 
+4
 2 7
 1 3 6 9
 -1 -1 -1 -1

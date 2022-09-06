@@ -53,19 +53,67 @@ void printTree(treeNode *root, int level)
     }
 }
 
-treeNode *invert_tree(treeNode *root)
+void level_order(treeNode *root)
 {
     if (root == NULL)
     {
-        return NULL;
+        return;
     }
-    treeNode *temp = root->leftChild;
-    root->leftChild = root->rightChild;
-    root->rightChild = temp;
-    invert_tree(root->leftChild);
-    invert_tree(root->rightChild);
-    return root;
+    queue<treeNode *> q;
+    q.push(root);
+    q.push(NULL);
+    while (!q.empty())
+    {
+        treeNode *Node = q.front();
+        q.pop();
+        if (Node != NULL)
+        {
+            cout << Node->value << " ";
+            if (Node->leftChild != NULL)
+            {
+                q.push(Node->leftChild);
+            }
+            if (Node->rightChild != NULL)
+            {
+                q.push(Node->rightChild);
+            }
+        }
+        else if (!q.empty())
+        {
+            q.push(NULL);
+        }
+    }
+    cout << endl;
 }
+  
+
+int second_minimum(treeNode *root)
+{
+
+        if(root == NULL){
+            return -1;
+        }
+        if(root->right == NULL && root->left == NULL){
+            return -1;
+        }
+        int left = root->left->val;
+        int right = root->right->val;
+        if(root->val == left){
+            left = findSecondMinimumValue(root->left);
+        }
+        if(root->val == right){
+            right = findSecondMinimumValue(root->right);
+        }
+        if(left != -1 && right != -1){
+            return min(left,right);
+        }else if(right != -1){
+            return right;
+        }else{
+            return left;
+        }
+}
+
+
 
 int main(void)
 {
@@ -94,14 +142,26 @@ int main(void)
             q.push(rightNode);
     }
     printTree(root, 0);
-    root = invert_tree(root);
-    cout << "Inverted Binary Tree : " << endl;
-    printTree(root, 0);
+    cout << is_unival(root) << endl;
 }
 /*
-4 
-2 7
-1 3 6 9
+0
+1 2
+3 4 5 6
 -1 -1 -1 -1
+7 8 -1 -1
+-1 -1 -1 -1
+*/
+/*
+0
+1 3
+3 4 5 6
+-1 -1 -1 -1
+7 8 -1 -1
+-1 -1 -1 -1
+*/
+/*
+3 9 20
+-1 -1 15 7
 -1 -1 -1 -1
 */

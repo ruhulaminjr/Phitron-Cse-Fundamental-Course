@@ -53,19 +53,84 @@ void printTree(treeNode *root, int level)
     }
 }
 
-treeNode *invert_tree(treeNode *root)
+void level_order(treeNode *root)
 {
     if (root == NULL)
     {
-        return NULL;
+        return;
     }
-    treeNode *temp = root->leftChild;
-    root->leftChild = root->rightChild;
-    root->rightChild = temp;
-    invert_tree(root->leftChild);
-    invert_tree(root->rightChild);
-    return root;
+    queue<treeNode *> q;
+    q.push(root);
+    q.push(NULL);
+    while (!q.empty())
+    {
+        treeNode *Node = q.front();
+        q.pop();
+        if (Node != NULL)
+        {
+            cout << Node->value << " ";
+            if (Node->leftChild != NULL)
+            {
+                q.push(Node->leftChild);
+            }
+            if (Node->rightChild != NULL)
+            {
+                q.push(Node->rightChild);
+            }
+        }
+        else if (!q.empty())
+        {
+            q.push(NULL);
+        }
+    }
+    cout << endl;
 }
+
+
+void average_level(treeNode *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+    queue<treeNode *> q;
+    q.push(root);
+    q.push(NULL);
+    int value = 0;
+    int i = 0;
+    while (!q.empty())
+    {
+        treeNode *Node = q.front();
+        q.pop();
+        if (Node == NULL)
+        {
+            double average = double(value) / i;
+            cout << average << " ";
+            value = 0;
+            i = 0;
+        }
+        if (Node != NULL)
+        {
+            i++;
+            value += Node->value;
+            if (Node->leftChild != NULL)
+            {
+                q.push(Node->leftChild);
+            }
+            if (Node->rightChild != NULL)
+            {
+                q.push(Node->rightChild);
+            }
+        }
+        else if (!q.empty())
+        {
+
+            q.push(NULL);
+        }
+    }
+    cout << endl;
+}
+
 
 int main(void)
 {
@@ -94,14 +159,26 @@ int main(void)
             q.push(rightNode);
     }
     printTree(root, 0);
-    root = invert_tree(root);
-    cout << "Inverted Binary Tree : " << endl;
-    printTree(root, 0);
+    average_level(root);
 }
 /*
-4 
-2 7
-1 3 6 9
+0
+1 2
+3 4 5 6
 -1 -1 -1 -1
+7 8 -1 -1
+-1 -1 -1 -1
+*/
+/*
+0
+1 3
+3 4 5 6
+-1 -1 -1 -1
+7 8 -1 -1
+-1 -1 -1 -1
+*/
+/*
+3 9 20
+-1 -1 15 7
 -1 -1 -1 -1
 */
