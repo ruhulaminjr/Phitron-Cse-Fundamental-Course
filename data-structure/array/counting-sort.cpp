@@ -30,7 +30,7 @@ int main(void)
             max = arr[i];
         }
     }
-    cout<<"Max : "<<max<<endl;
+    cout << "Max : " << max << endl;
     int count[max + 1];
     for (int i = 0; i <= max; i++)
     {
@@ -40,11 +40,12 @@ int main(void)
     {
         count[arr[i]]++;
     }
-    cout<<"Counter Array:  ";
-    for(int i=0;i<=max;i++){
-        cout<<count[i]<<" ";
+    cout << "Counter Array:  ";
+    for (int i = 0; i <= max; i++)
+    {
+        cout << count[i] << " ";
     }
-    cout<<endl;
+    cout << endl;
     for (int i = 1; i <= max; i++)
     {
         count[i] = count[i] + count[i - 1];
@@ -61,8 +62,8 @@ int main(void)
         int key = count[arr[i]];
         sorted[key] = arr[i];
     }
-    cout<<endl;
-    cout<<"Sorted Array : ";
+    cout << endl;
+    cout << "Sorted Array : ";
     printArray(sorted, size);
 }
 // Counting Sort Algorithm Time Complexity O(n);
@@ -71,3 +72,4 @@ int main(void)
 // step 3 : make a presum array of frequency array counter[i]  = counter[i-1] + counter[i];
 // step 4 : traverse arr size-1 to 0 and subtract value from  counter[arr[i]]--  and store it on a key variable;
 // step 5 : sotre arr[i] into k position in the final array;
+// 3 3 1 7 7 4 4 5

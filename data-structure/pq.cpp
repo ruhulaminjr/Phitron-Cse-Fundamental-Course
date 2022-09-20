@@ -45,7 +45,8 @@ public:
         {
             // swap(v[insertedIdx], v[parent(insertedIdx)]);
             // cout<<insertedIdx<<"in idx "<<endl;
-            if(insertedIdx <= 0) break;
+            if (insertedIdx <= 0)
+                break;
             swap(v[insertedIdx], v[parent(insertedIdx)]);
             insertedIdx = parent(insertedIdx);
         }

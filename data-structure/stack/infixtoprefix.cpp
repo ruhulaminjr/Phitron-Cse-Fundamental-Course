@@ -21,6 +21,7 @@ int precedenceCalc(char c)
 int prefixEvaluation(string str)
 {
     Stacks<int> st;
+    int j = 1;
     for (int i = str.length() - 1; i >= 0; i--)
     {
         if (str[i] >= '0' && str[i] <= '9')
@@ -54,17 +55,32 @@ int prefixEvaluation(string str)
                 break;
             }
         }
+        stack<int> q;
+        while (!st.isEmpty())
+        {
+            cout << "Step : " << j << " | Stack : " << st.topValue() << endl;
+            q.push(st.topValue());
+            st.pop();
+        }
+        while (!q.empty())
+        {
+            st.push(q.top());
+            q.pop();
+        }
+        cout << endl;
+        j++;
     }
     return st.topValue();
 }
 string infixToPrefix(string str)
 {
     reverse(str.begin(), str.end());
+    // cout<<str<<endl;
     string result;
     Stacks<char> st;
     for (int i = 0; i < str.length(); i++)
     {
-        if (str[i] >= '0' && str[i] <= '9' || str[i] >= 'a' && str[i] <= 'z')
+        if (str[i] >= '0' && str[i] <= '9' || str[i] >= 'A' && str[i] <= 'Z')
         {
             result += str[i];
         }
@@ -91,14 +107,15 @@ string infixToPrefix(string str)
             }
             st.push(str[i]);
         }
+        // cout << "Prefix step : " << i << " : " << result << endl;
     }
     reverse(result.begin(), result.end());
     return result;
 }
 int main(void)
 {
-    string infixStr = "(+9*3/8 4)";
-    cout << infixToPrefix(infixStr) << endl;
+    string infixStr = "(5*((6^2)+(7-(2/6))))-((7*(8+1))+(5*4))";
+    // cout << infixToPrefix(infixStr) << endl;
     cout << prefixEvaluation(infixToPrefix(infixStr)) << endl;
 }
 
@@ -115,3 +132,12 @@ int main(void)
 // step 6 : pop the stack until stacks gets empty and join stack value in result str;
 
 // step 7 : reverse the result str;
+
+/*
+Input : A * B + C / D
+Output : + * A B/ C D
+
+Input : (A - B/C) * (A/K-L)
+Output : *-A/BC-/AKL
+
+*/

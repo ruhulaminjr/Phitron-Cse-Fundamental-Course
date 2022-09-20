@@ -60,6 +60,7 @@ void InOrderTrav(treeNode *root, string &str)
     }
     InOrderTrav(root->leftChild, str);
     str += to_string(root->value);
+    str += " ";
     InOrderTrav(root->rightChild, str);
 }
 void postOrderTrav(treeNode *root, string &str)
@@ -71,6 +72,7 @@ void postOrderTrav(treeNode *root, string &str)
     postOrderTrav(root->leftChild, str);
     postOrderTrav(root->rightChild, str);
     str += to_string(root->value);
+    str += " ";
 }
 void preOrderTrav(treeNode *root, string &str)
 {
@@ -79,6 +81,7 @@ void preOrderTrav(treeNode *root, string &str)
         return;
     }
     str += to_string(root->value);
+    str += " ";
     // cout<<root->value<< " ";
     preOrderTrav(root->leftChild, str);
     preOrderTrav(root->rightChild, str);
@@ -129,3 +132,23 @@ int main(void)
 7 8 -1 -1
 -1 -1 -1 -1
 */
+/*
+15
+11 26
+8 12 20 30
+6 9 -1 14
+-1 -1 -1 35
+-1 -1 -1 -1
+-1 -1 -1
+-1
+-1 -1 -1
+*/
+
+                   7 
+               /       \
+             5           12
+           /  \         /   \
+         3     6       9     15   
+       /   \         / \    /  \
+     1      4       8   10 13   17
+
