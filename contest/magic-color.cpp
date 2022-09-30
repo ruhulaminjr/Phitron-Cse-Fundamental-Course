@@ -51,25 +51,29 @@ void magicColor(char str[], int n)
     stack<char> st3;
     while (!st2.empty())
     {
-        if(st3.empty()){
+        if (st3.empty())
+        {
             st3.push(st2.top());
             st2.pop();
             continue;
-
         }
-       char a = st2.top();
-       char b = st3.top();
-       if(a==b){
-        st2.pop();
-        st3.pop();
-       }else{
-        st3.push(a);
-        st2.pop();
-       }
+        char a = st2.top();
+        char b = st3.top();
+        if (a == b)
+        {
+            st2.pop();
+            st3.pop();
+        }
+        else
+        {
+            st3.push(a);
+            st2.pop();
+        }
     }
-    while(!st3.empty()){
+    while (!st3.empty())
+    {
         char el = st3.top();
-        cout<<el;
+        cout << el;
         st3.pop();
     }
     cout << endl;
