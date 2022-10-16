@@ -17,9 +17,13 @@ def create_new_string(lst, s):
     s = s.replace(",", "").replace(".", "").split(" ")
     lst = " ".join(lst).upper().split(" ")
     newWord = ""
+    chk = True
     for idx, word in enumerate(s):
         if word.upper() in lst:
-            newWord += s[idx+1] + " "
+            if(chk and s[idx] == "to"):
+                chk = False
+            else:
+                newWord += s[idx+1] + " "
     with open("output.txt", "w") as f:
         f.write(newWord)
         f.close()
