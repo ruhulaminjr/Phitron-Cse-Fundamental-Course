@@ -13,6 +13,7 @@ def timer(func):
         print(f"Inner End Time Taken {end - start}")
     return inner
 
+
 @timer
 def factorial(n):
     print(f"Factorial of {n} is {math.factorial(n)}")

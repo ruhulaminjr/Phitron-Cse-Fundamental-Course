@@ -23,6 +23,9 @@ class Person:
         elif self.money < other.money:
             return 0
 
+    def __repr__(self):
+        return f"{self.name} {self.height} "
+
 
 ruhul = Person("Ruhul", 18, 999)
 amin = Person("Amin", 19, 599)
@@ -30,6 +33,7 @@ amin = Person("Amin", 19, 599)
 print(ruhul != amin)
 
 print(len(ruhul))
+print(ruhul)
 """ __cmp__(self, other)	সমস্ত কমপারিজন অপারেটরের বাপ।
 __eq__(self, other) == অপারেটরের কাজ করে।
 __ne__(self, other) != অপারেটরের কাজ করে।
