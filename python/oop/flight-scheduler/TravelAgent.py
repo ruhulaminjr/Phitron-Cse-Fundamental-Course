@@ -1,6 +1,7 @@
 from air_lines import all_airCraft
 from All_Airports import AllAirports
 from Trip import Trip
+from itertools import permutations
 
 
 class TravelAgent:
@@ -39,6 +40,13 @@ class TravelAgent:
                 trip_cities[i-1], trip_cities[i], start_date, return_date)
             start_trip_info.append(trip)
         return start_trip_info
+
+    def set_trip_multi_city_flexible(self, cities, start_date):
+        start = cities[0]
+        flexible = permutations(cities[1:])
+        for city in flexible:
+            newRoute = [start] + list(city)
+            print(newRoute)
 
     def __repr__(self):
         return f"TravelAgent Name : {self.name}"
