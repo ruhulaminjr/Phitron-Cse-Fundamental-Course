@@ -18,4 +18,10 @@ class all_airCraft:
             file.close()
         self.all_aircraft = all_air_craft
 
+    def getAirLinesByDistance(self, distance):
+        for aircraft in self.all_aircraft.values():
+            if aircraft.flight_range > distance:
+                return aircraft
+
+
 all_airCraft()
