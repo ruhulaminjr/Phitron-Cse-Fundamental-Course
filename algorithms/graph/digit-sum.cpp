@@ -14,3 +14,11 @@ int main(void)
 
     cout << sum << endl;
 }
+
+/*
+Write a recursive function digitSum(int n) that takes a non-negative integer as input and returns the sum of its digits. Follow all the steps of problem 4.
+Example:
+    Input: 7464
+    Output: 21
+    Explanation: 7 + 4 + 6 + 4 = 21
+*/
