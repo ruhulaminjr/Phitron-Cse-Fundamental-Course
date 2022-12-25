@@ -3,6 +3,7 @@ using namespace std;
 const int N = 1e5;
 int visited[N] = {};
 vector<int> adj_list[N];
+vector<int> counter(7, 0);
 
 /*
 Nodes = 6 ,Edge=6;
@@ -35,17 +36,20 @@ void bfs(int node)
     queue<int> q;
     q.push(node);
     visited[node] = 1;
+    counter[node]++;
     while (!q.empty())
     {
         int head = q.front();
         q.pop();
-        cout << head<< " ";
+        cout << head << " ";
         for (int adjNode : adj_list[head])
         {
+            counter[adjNode]++;
             if (visited[adjNode] == 0)
             {
                 visited[adjNode] = 1;
                 q.push(adjNode);
+                
             }
         }
     }
@@ -57,10 +61,15 @@ int main(void)
     for (int i = 0; i < edges; i++)
     {
         int u, v;
-        cin>>u>>v;
+        cin >> u >> v;
         adj_list[u].push_back(v);
         adj_list[v].push_back(u);
     }
     bfs(0);
-    cout<<endl;
+    cout << endl;
+    cout << "count visited vertex: " << endl;
+    for (int i = 0; i < counter.size(); i++)
+    {
+        cout << i << " " << counter[i] << endl;
+    }
 }
