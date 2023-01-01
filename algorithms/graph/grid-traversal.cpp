@@ -44,13 +44,13 @@ void bfs(pair<int, int> src)
         int dy[] = {1, -1, 0, 0};
         for (int i = 0; i < 4; i++)
         {
-            int newx = x+dx[i];
-            int newy = y+dy[i];
+            int newx = x + dx[i];
+            int newy = y + dy[i];
             if (check(newx, newy))
             {
                 level[newx][newy] = level[x][y] + 1;
                 visited[newx][newy] = 1;
-                q.push({newx,newy});
+                q.push({newx, newy});
             }
         }
     }
@@ -108,9 +108,4 @@ Output:
 YES
 9
 LDDRRRRRU
-
-
-
-
-
 */
