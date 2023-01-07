@@ -4,50 +4,32 @@ const int N = 2e5;
 int visited[N] = {};
 vector<int> adj_list[N] = {};
 
-/*
-Input:
-4 5
-1 3
-2 1
-2 4
-3 2
-3 4
-output: cyle existed
-input :
-4 4
-1 3
-2 1
-2 4
-3 4
-output : NO
-*/
-bool detect_cycle(int node)
-
+bool bfs(int src)
 {
-    visited[node] = 1;
-    for (int adj_node : adj_list[node])
+    queue<int> q;
+    visited[src] = 1;
+    q.push(src);
+    while (!q.empty())
     {
-        /*
-        1. run dfs on unvisited node
-        2. if visited[node] == 1 found then cycle detected
-        3. set explored node to visite[node] = 2;
-        */
-        if (visited[adj_node] == 0)
+        int head = q.front();
+        q.pop();
+        for (int adj_node : adj_list[head])
         {
-            bool chk = detect_cycle(adj_node);
-            if (chk)
+            if (visited[adj_node] == 0)
+            {
+                q.push(adj_node);
+                visited[adj_node] = 1;
+            }
+            else if (visited[adj_node] == 1)
             {
                 return true;
             }
         }
-        else if (visited[node] == 1)
-        {
-            return true;
-        }
+        visited[head] = 2;
     }
-    visited[node] = 2;
     return false;
 }
+
 int main(void)
 {
     int n, m;
@@ -63,7 +45,8 @@ int main(void)
     {
         if (visited[i] == 0)
         {
-            bool is_cycle_exist = detect_cycle(i);
+            bool is_cycle_exist = bfs(i);
+            // cout << "c : " << is_cycle_exist << endl;
             if (is_cycle_exist)
             {
                 ok = true;
