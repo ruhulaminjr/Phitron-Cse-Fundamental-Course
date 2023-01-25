@@ -1,0 +1,18 @@
+Input: undirected Graph with weighted Edge
+Output: print distance of all Node
+
+-> declare a distance array d to track distance of all vertex/ Node
+-> initilize all node distance to inifinite
+-> set src node distance to zero d[src] = 0;
+-> create a visited array and mark all node as unvisited
+for i= 0 to i=n-1:
+   ->pick the unvisited node with minimum distance
+   visited[node] = true;
+   for all adj_node in node:
+        if d[node] + cost(node,adj_node) < d[adj_node]:
+            d[adj_node] = d[node] + cost(node,adj_node);
+
+
+
+space complexity -> o(N) + O(N) + = O(N);
+time complexity ->  o(n) * o(n) + o(1) = O(N^2);
