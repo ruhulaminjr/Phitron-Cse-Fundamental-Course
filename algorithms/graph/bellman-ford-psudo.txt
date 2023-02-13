@@ -10,9 +10,50 @@ relx(){
 
 -> Create a Distance array d and set all value to INFINITY
 -> set d[src] = 0
+-> create a parent array:
+-> set parent[src] = -1;
+has_negative_cycle = false
+last_update_node = 1
+for i=1 to n:
+    for alledge e(u,v,w):
+        if(d[u] + w < d[v]) : 
+            d[v] = d[u] + d[w]
+            parent[v] = u
+            if(i == N):
+                has_negative_cycle = true
+                last_update_node = v
 
-for i=1 to n-1:
-    for edge in alledge:
-        relax(edge)
+
+        
+
 
 -> print the distance array
+if has_negative_cycle == false
+    selected_node = parent[dst]
+    declare vector path
+    while(true):
+        path.push(selected_node)
+        if(selected_node == -1) break
+        selected_node = parent[selected_node]
+    reverse path vector and print path vector
+
+if has_negative_cycle == true:
+    printing the negative cycle
+    selected_node = last_update_node
+    for i = 1 to n-1:
+        selected_node = parent[selected_node]
+        last_update_node = selected_node
+    create a vector cycle 
+    cycle.push_back(selected_node)
+
+    while true:
+        selected_node = parent[selected_node]
+        if(selected_node == last_update_node) break
+        cycle.push(selected_node)
+    reverse the cycle vector
+    and print the cycle vector
+    
+        
+    
+        
+        

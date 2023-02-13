@@ -1,0 +1,18 @@
+pseudo code 
+
+input : a Weighted graph as an adjacency matrix
+output: shortest path from all Node
+
+-> create a distance_matrix "d" and set  d[i][j] = x
+   where there is direct edge from node "i" to node 'j" and cost is "x"
+-> for all node "i" d[i][i] = 0 
+-> for all nodes "u" & "j" where there isn't any direct edge from "u" to "v"
+    set d[u][v] = INF
+
+for all node "K"
+    - for all node "U"
+     - for all node "v"
+        - d[u][v] = min(d[u][v],d[u][v] + d[k][v])
+
+- output all pair shortest distance "d"
+
