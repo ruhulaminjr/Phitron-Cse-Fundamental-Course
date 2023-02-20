@@ -1,0 +1,32 @@
+#Dynamic Programing Steps:
+++++++++++++++++++++++++++
+Step-1 -> Define State
+
+Step-2 -> Identify the recursive equation from the smaller problem
+
+Step-3 -> Define Base Case Of the problem
+
+
+#Memoization-Method(recursive)
++++++++++++++++++++++++++++++
+fun(n,a){
+    step-1-> Handle Base Case 
+
+    step-2-> if current n or state already solved then return the state result
+
+    step-3-> Calculate Smaller SubProblem of n
+
+}
+
+
+
+
+#Tabulation-Method(Iteraive)
+++++++++++++++++++++++++++++++
+main{
+    Step-1: Handle Base Case
+
+    Step-2: Loop Through The States
+        Step-2.1: Calculate The State from smaller Sub-Problem
+}
+
